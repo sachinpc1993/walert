@@ -1,77 +1,57 @@
+from ranx import compare,Qrels,Run
 import argparse
-import os
-import scipy.stats
 import sys
-import json
-import pytrec_eval
+import pandas as pd
+
 
 
 def main():
     parser = argparse.ArgumentParser()
-
+    parser.add_argument('topic_set', choices=['known', 'inferred'])
     parser.add_argument('qrel')
-    parser.add_argument('run', nargs=1)
-
-    # A bit too strict, as it does not allow for parametrized measures,
-    # but sufficient for the example.
-#    parser.add_argument('--measure',
- #                       choices=pytrec_eval.supported_measures,
- #                       required=True)
-    measures = {'recip_rank','ndcg_cut_5', 'ndcg_cut_10', 'ndcg'}
-
+    parser.add_argument('runs', nargs='+', default=[]),
     args = parser.parse_args()
-
-    assert os.path.exists(args.qrel)
-    assert all(map(os.path.exists, args.run))
-
-    with open(args.qrel, 'r') as f_qrel:
-        qrel = pytrec_eval.parse_qrel(f_qrel)
-
-    with open(args.run[0], 'r') as f_run:
-        first_run = pytrec_eval.parse_run(f_run)
-
-   # with open(args.run[1], 'r') as f_run:
-   #     second_run = pytrec_eval.parse_run(f_run)
-
-    evaluator = pytrec_eval.RelevanceEvaluator(
-        qrel, measures)
-
-    first_results = evaluator.evaluate(first_run)
-    print(json.dumps(first_results, indent=True))
-
-    #avg_recip_rank = sum([first_results[query_id]['recip_rank'] for query_id in first_results.keys()]) / len(first_results.keys())
-    #avg_ndcg = sum([first_results[query_id]['ndcg'] for query_id in first_results.keys()]) / len(first_results.keys())
     
+    alpha = 0.01
+    topic_set = args.topic_set
+    qrels = pd.read_csv(args.qrel, sep='\t', names=['q_id', '0', 'doc_id', 'score'], header=None)
+    mask_known = qrels['q_id'].str.startswith('W01') | qrels['q_id'].str.startswith('W02') | qrels['q_id'].str.startswith('W03') | qrels['q_id'].str.startswith('W04') | qrels['q_id'].str.startswith('W05') | qrels['q_id'].str.startswith('W06') | qrels['q_id'].str.startswith('W07') | qrels['q_id'].str.startswith('W08') | qrels['q_id'].str.startswith('W09') | qrels['q_id'].str.startswith('W10') | qrels['q_id'].str.startswith('W11') | qrels['q_id'].str.startswith('W12') | qrels['q_id'].str.startswith('W13') | qrels['q_id'].str.startswith('W14') | qrels['q_id'].str.startswith('W15') | qrels['q_id'].str.startswith('W16') | qrels['q_id'].str.startswith('W17') | qrels['q_id'].str.startswith('W18') | qrels['q_id'].str.startswith('W19') | qrels['q_id'].str.startswith('W20')
+    qrels_known = qrels[mask_known]
 
-    averages = {}
-    for measure in measures:
-        avg_measure = sum([first_results[query_id][measure] for query_id in first_results.keys()]) / len(first_results.keys())
-        averages[measure] = avg_measure
-
-
-    latex_table = """
-  {0} & RR & {1:.2f} \\\\
-  nDCG & {2:.2f} \\\\
-  nDCG@5 & {3:.2f} \\\\
-  nDCG@10 & {4:.2f} \\\\
-  \\hline
-""".format(args.run[0], averages['recip_rank'], averages['ndcg'], averages['ndcg_cut_5'], averages['ndcg_cut_10'])
-
-    # Print or save the LaTeX table
-    print(latex_table)
+    mask_inferred = qrels['q_id'].str.startswith('W21') | qrels['q_id'].str.startswith('W22') | qrels['q_id'].str.startswith('W23') | qrels['q_id'].str.startswith('W24') | qrels['q_id'].str.startswith('W25') | qrels['q_id'].str.startswith('W26') | qrels['q_id'].str.startswith('W27') | qrels['q_id'].str.startswith('W28') | qrels['q_id'].str.startswith('W29') | qrels['q_id'].str.startswith('W30') | qrels['q_id'].str.startswith('W31') | qrels['q_id'].str.startswith('W32')
+    qrels_inferred = qrels[mask_inferred]
+    
+    
+    runs = [Run.from_file(run, kind="trec") for run in args.runs]
+    
+    
+    
+    if (topic_set == "known"):
+        qrels = Qrels.from_df(qrels_known,
+                              q_id_col="q_id",
+                              doc_id_col="doc_id",
+                              score_col="score")
+    else:
+        qrels = Qrels.from_df(qrels_inferred,
+                              q_id_col="q_id",
+                              score_col="score")
 
     
-    #second_results = evaluator.evaluate(second_run)
+    report = compare( 
+        qrels=qrels,
+        runs=runs, 
+        metrics=["ndcg@1","ndcg@3","ndcg@5"],
+        max_p=alpha,  # P-value threshold
+        make_comparable=True,
+        stat_test="tukey",
+        rounding_digits=4,  
+    )
 
-    #query_ids = list(
-    #    set(first_results.keys()) & set(second_results.keys()))
+    print("{} Topics".format(topic_set))
+    print(report)
+    print(report.to_latex())
 
-    #first_scores = [
-    #    first_results[query_id][args.measure] for query_id in query_ids]
-    #second_scores = [
-    #    second_results[query_id][args.measure] for query_id in query_ids]
 
-    #print(scipy.stats.ttest_rel(first_scores, second_scores))
 
 if __name__ == "__main__":
     sys.exit(main())
