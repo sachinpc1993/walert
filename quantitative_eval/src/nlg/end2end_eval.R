@@ -3,9 +3,9 @@ require(stringr)
 #Read data
 
 
-baseline  <- read.csv("../target/summaries/walert_eval.csv")
-rag.bm25  <- read.csv("../target/summaries/falcon_bm25_eval.csv")
-rag.dense <- read.csv("../target/summaries/falcon_dense_eval.csv")
+baseline  <- read.csv("../../target/summaries/walert_eval.csv")
+rag.bm25  <- read.csv("../../target/summaries/falcon_bm25_eval.csv")
+rag.dense <- read.csv("../../target/summaries/falcon_dense_eval.csv")
 
 
 metrics <- c("bert_score_f1","bleu_score", "rouge_l_f1","rouge_1_f1","rouge_2_f1")
@@ -77,11 +77,12 @@ data <- bind_rows(data,temp)
 
 
 
-#W01-W20	known
+#W01-W20,W39	known
 #W21-W32	inferred
-#W33-W43	out of knowledge base
+#[W33-W38,W40-W43]	out of knowledge base
 
-
+#approaches <- unique(data$approach)
+#data$approach <- factor(data$approach, levels = approaches, ordered = TRUE)
 
 # Assuming your data frame is called df
 topics.known <- data %>%
@@ -104,6 +105,7 @@ topics.known <- data %>%
            startsWith(question_id, prefix = "W17") |
            startsWith(question_id, prefix = "W18") |
            startsWith(question_id, prefix = "W19") |
+           startsWith(question_id, prefix = "W39") |
            startsWith(question_id, prefix = "W20")
   )
 
@@ -130,7 +132,6 @@ topics.out.of.KB <- data %>% filter(  startsWith(question_id, prefix = "W33") |
                                       startsWith(question_id, prefix = "W36") |
                                       startsWith(question_id, prefix = "W37") |
                                       startsWith(question_id, prefix = "W38") |
-                                      startsWith(question_id, prefix = "W39") |
                                       startsWith(question_id, prefix = "W40") |
                                       startsWith(question_id, prefix = "W41") |
                                       startsWith(question_id, prefix = "W42") |
@@ -138,7 +139,8 @@ topics.out.of.KB <- data %>% filter(  startsWith(question_id, prefix = "W33") |
 )
 
 
-metrics <- c("bert_score_f1","bleu_score","rouge_l_f1","rouge_1_f1","rouge_2_f2")
+#metrics <- c("bert_score_f1","bleu_score","rouge_l_f1","rouge_1_f1","rouge_2_f2")
+metrics <- c("bert_score_f1","rouge_1_f1")
 
 for (metric in metrics) {
   formula <- as.formula(paste(metric, "~ factor(approach) + factor(question_id)"))
