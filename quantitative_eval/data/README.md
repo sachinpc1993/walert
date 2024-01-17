@@ -1,24 +1,23 @@
 # Walert - A Conversational Agent
 Demo Video Link: https://bit.ly/chiir24walertdemovideo
 
-# About Walert
+## About Walert
 Walert is a conversational agent designed to answer frequently asked questions (FAQs) regarding programs of study offered at the School of Computing Technologies, RMIT University. Our intent-based approach, deployed on Amazon Echo devices, was showcased as a live demo during RMIT University's Open Day in August 2023.
 
 
 Note: This repository contains all utility code for 'Behind The Scenes' of Walert.
 
-# Dataset Files
+## Dataset Files
 In the dataset folder, you'll find the following files that are generated from an FAQ Document:
 
-File Name: topics.csv
-
-Format: CSV
-Description: Contains unique query IDs extracted from FAQs, along with variations for each query. Utilizes Falcon for formatting different question formats related to the same query.
-Columns:
-	topic_id: Unique ID for each query (e.g., W01).
-	Topic: Title of the query as it appears in the FAQ (e.g., what's the difference between CS and SE programs?).
-	question_id: Unique ID for each question related to a specific topic (e.g., W01Q01).
-	question: Alternative question related to each query, including the main format from the FAQ (e.g., What sets apart CS programs from SE programs?).
+1. **File Name: topics.csv**
+   -*Format:* CSV
+   -*Description:* Contains unique query IDs extracted from FAQs, along with variations for each query. Utilizes Falcon for formatting different question formats related to the same query.
+   -*Columns:*
+     - `topic_id`: Unique ID for each query (e.g., W01).
+     - `Topic`: Title of the query as it appears in the FAQ (e.g., what's the difference between CS and SE programs?).
+     - `question_id`: Unique ID for each question related to a specific topic (e.g., W01Q01).
+     - `question`: Alternative question related to each query, including the main format from the FAQ (e.g., What sets apart CS programs from SE programs?).
 Total topics: 43, with 1 to 4 alternative questions for each topic.
 
 
