@@ -8,7 +8,7 @@ Walert is a conversational agent designed to answer frequently asked questions (
 Note: This repository contains all utility code for 'Behind The Scenes' of Walert.
 
 
-##Requirements
+## Requirements
 - python 3.9
 - Install all packages in `requirements.txt` using:
 ```
@@ -18,7 +18,7 @@ Note: This repository contains all utility code for 'Behind The Scenes' of Waler
 ```
 
 
-##Data 
+## Data 
 All dataset files are located in the `data` folder, which includes extracted queries and passages from FAQ documents. The folder provides detailed descriptions for each required file, along with its format. To run the models on a new dataset, ensure that it is structured exactly as it is in the `data` folder.
 
 ## src
