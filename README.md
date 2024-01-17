@@ -9,3 +9,9 @@ We built Walert, a conversational agent that answers FAQs about programs of stud
 Note: This repository contains all utility code for 'Behind The Scenes' of Walert.
 
 You will find in **quantitative_eval** folder all the required codes and files to rerun the experiments in the paper. 
+
+
+# Citation
+If you use or reference this work, please cite it as follows:
+
+[Author(s) Name. (Year). Title of the Project. URL](link-to-your-github-repository)
