@@ -6,3 +6,6 @@ Walert is a conversational agent designed to answer frequently asked questions (
 
 
 Note: This repository contains all utility code for 'Behind The Scenes' of Walert.
+
+This directory includes all the outputs of running the source code. 
+
