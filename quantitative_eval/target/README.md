@@ -9,3 +9,6 @@ Note: This repository contains all utility code for 'Behind The Scenes' of Waler
 
 This directory includes all the outputs of running the source code. 
 
+**indexes** will include the indexes using either **bm25** or **DPR**
+**runs** include the retrieval process outputs 
+**trec_eval_results** includes the evaluation outputs 
