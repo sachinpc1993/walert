@@ -47,9 +47,9 @@ Total topics: 43, with 1 to 4 alternative questions for each topic.
 
 
 5. **File Name: gold_summaries.csv**\
-   -*Format: CSV\
-   -*Description: Includes ideal answers for questions that are partially mapped to one or more passages. Passages are combined and summarized.\
-   -*Columns:
+   -*Format*: CSV\
+   -*Description*: Includes ideal answers for questions that are partially mapped to one or more passages. Passages are combined and summarized.\
+   -*Columns*:
      - `question_id`: ID for a question (e.g., W01Q01).
      - `summary_id`: ID of a summary answer from more than one passage (e.g., S21). In case the question is partially relevant to only one passage summary_id is the ID of that passage (e.g., P01).
      - `summary`: the generated summary of the passages or the passage that answers the question (e.g., "You'll receive credit for only 75% of the courses you take in the first year..."). 
