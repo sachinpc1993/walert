@@ -11,9 +11,11 @@ Note: This repository contains all utility code for 'Behind The Scenes' of Waler
 In the dataset folder, you'll find the following files that are generated from an FAQ Document:
 
 1. **File Name: topics.csv**
+   
    -*Format:* CSV
    
    -*Description:* Contains unique query IDs extracted from FAQs, along with variations for each query. Utilizes Falcon for formatting different question formats related to the same query.
+   
    -*Columns:*
      - `topic_id`: Unique ID for each query (e.g., W01).
      - `Topic`: Title of the query as it appears in the FAQ (e.g., what's the difference between CS and SE programs?).
@@ -22,7 +24,7 @@ In the dataset folder, you'll find the following files that are generated from a
 Total topics: 43, with 1 to 4 alternative questions for each topic.
 
 
-3. **File Name: Collection.csv**
+2. **File Name: Collection.csv**
    -*Format:* CSV
    -*Description:* Corpus of passages extracted from FAQ answers, representing the knowledge base (KB).
    -*Columns:*
@@ -30,7 +32,7 @@ Total topics: 43, with 1 to 4 alternative questions for each topic.
      - `passage`: Exact text passage extracted from the FAQ, forming the answer or part of an answer for a question of a specific topic (e.g., "The first two years of these two programs are near-identical..." ).
 
 
-4. **File Name: groundtruth.csv**
+3. **File Name: groundtruth.csv**
    -*Format*: CSV
    -*Description*: Mapping between unique topics and relevant passages in a one-to-many relationship. Includes a relevance judgment score (1 or 2).
    -*Columns*:
@@ -41,13 +43,13 @@ Total topics: 43, with 1 to 4 alternative questions for each topic.
      - `relevance_judgment`: Score (1 or 2) indicating full (2) or partial (1) relevance of the passage to the topic.
 
 
-5. **File Name: qrels.txt**
+4. **File Name: qrels.txt**
    -*Format*: TXT
    -*Description*: Mapping between each question ID for all topics and its related passage IDs in a one-to-many relationship. Includes relevant scores (1 or 2).
    -*Example line*: "W01Q01 0 P01 2" means the answer to the first question related to topic 1 is fully answered in passage 1.
 
 
-6. **File Name: gold_summaries.csv**
+5. **File Name: gold_summaries.csv**
    -*Format: CSV
    -*Description: Includes ideal answers for questions that are partially mapped to one or more passages. Passages are combined and summarized.
    -*Columns:
