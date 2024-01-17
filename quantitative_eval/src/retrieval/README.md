@@ -18,4 +18,4 @@ bash main.sh
 use **index.sh**  for  RAG (DPR + Falcon) or **index-bm25.sh** RAG (BM25 + Falcon).
  
 
-All output will be save in 'walert/quantitative_eval/target'. If you already have the generated indexes you can dirictly run **eval.py**
+All output will be saved in 'walert/quantitative_eval/target'. If you already have the generated indexes, you can directly run **eval.py**
