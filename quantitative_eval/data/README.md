@@ -10,9 +10,9 @@ Note: This repository contains all utility code for 'Behind The Scenes' of Waler
 ## Dataset Files
 In the dataset folder, you'll find the following files that are generated from an FAQ Document:
 
-1. **File Name: topics.csv**<br>   
+1. **File Name: topics.csv**\
    -*Format:* CSV<br>   
-   -*Description:* Contains unique query IDs extracted from FAQs, along with variations for each query. Utilizes Falcon for formatting different question formats related to the same query.<br />   
+   -*Description:* Contains unique query IDs extracted from FAQs, along with variations for each query. Utilizes Falcon for formatting different question formats related to the same query.<br>   
    -*Columns:*
      - `topic_id`: Unique ID for each query (e.g., W01).
      - `Topic`: Title of the query as it appears in the FAQ (e.g., what's the difference between CS and SE programs?).
