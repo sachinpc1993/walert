@@ -13,10 +13,11 @@ You will find in **quantitative_eval** folder all the required codes and files t
 
 # Citation
 If you use or reference this work, please cite it as follows:
-'''
+```
+
 @article{cherumanal2024walert,
   title={Walert: Putting Conversational Search Knowledge into Action by Building and Evaluating a Large Language Model-Powered Chatbot},
-  author={Cherumanal, Sachin Pathiyan and Tian, Lin and Abushaqra, Futoon M and Ji, Kaixin and Ali, Halil and Hettiachchi, Danula and Trippas, Johanne R and Scholer, Falk and Spina, Damiano},
+  author={Cherumanal, Sachin Pathiyan and Tian, Lin and Abushaqra, Futoon M Paula, Angel Felipe and Ji, Kaixin and Ali, Halil and Hettiachchi, Danula and Trippas, Johanne R and Scholer, Falk and Spina, Damiano},
   year={2024}
 }
-'''
+```
