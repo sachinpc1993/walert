@@ -15,6 +15,9 @@ from pydub import AudioSegment
 import pygame
 import time
 import os
+import logging
+
+logging.basicConfig(filename='voice_assistant.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Overall System Pipeline
 # [Voice Recording locally] -> {User Query in audio format} -> [ASR using Open AI's Whisper] -> {Query in text format} -> \
@@ -140,6 +143,7 @@ def callback(indata, frames, time, status):
 EVENT = threading.Event()
 
 if __name__ == '__main__':
+    logging.info("Starting the voice assistant...")
     # ************ Query Recording ************
 
     samplerate = 44100  # Standard for most microphones
@@ -159,21 +163,31 @@ if __name__ == '__main__':
     temp_filename = 'user_voice_query.wav'
     write(temp_filename, samplerate, audio)
 
+    logging.info("User's voice query successfully recorded and store as user_voice_query.wav")
+
     # ************ ASR ************
     model = whisper.load_model("base")
     result = model.transcribe(temp_filename, fp16=False)
     question = result["text"]
 
+    logging.info(f"User's voice query trasncribed: {question}")
+
+    logging.info(f"Initiating retrieval . . .")
     # ************ Retrieval ************
     RAG_context_passages = get_context_passages(question)
 
+    logging.info(f"Retrieval Completed")
     # ************ Response Generation in Text ************
+    logging.info(f"Initiating response generation using Falcon")
     llm_result = generate_answer(question, RAG_context_passages, PIPELINE, TOKENIZER)
 
     response_text = get_answer(llm_result[0]['generated_text'])
 
+    logging.info(f"Response generation completed (text format): {response_text}")
     # ************ Voice Response ************
+    logging.info(f"Initiating voice response (audio format)")
     play_voice_response(response_text)
 
+    logging.info(f"Conversation turn completed.")
 
 
