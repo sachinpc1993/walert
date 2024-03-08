@@ -1,5 +1,7 @@
 # Walert - A Conversational Agent
-Demo Video Link (Intent-Based version deployed on Amazon Echo Device): https://bit.ly/chiir24walertdemovideo
+Amazon Echo Demo Link: https://bit.ly/chiir24walertdemovideo
+
+Demo Video Link (Intent-Based version deployed on Amazon Echo Device): https://bit.ly/WalertIntentDemo
 
 Demo Video Link (Retrieval Augmented Generation based version): https://bit.ly/WalertRAGDemo
 
