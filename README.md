@@ -18,6 +18,9 @@ Note: This repository contains all utility code for 'Behind The Scenes' of Waler
 
 You will find in **quantitative_eval** folder all the required codes and files to rerun the experiments in the paper. 
 
+# Evaluation Results
+NDCG for Known and Inferred Questions
+![NDCG](Evaluation_results/1.png)
 
 
 # Citation
