@@ -22,6 +22,17 @@ You will find in **quantitative_eval** folder all the required codes and files t
 NDCG for Known and Inferred Questions
 ![NDCG](Evaluation_results/1.png)
 
+% of unanswered out-of-knowledge-base questions 
+![unanswere](Evaluation_results/2.png)
+
+BERTScore
+![BERTScore](Evaluation_results/3.png)
+
+
+ROUGE-1
+![ROUGE](Evaluation_results/4.png)
+
+
 
 # Citation
 If you use or reference this work, please cite it as follows:
