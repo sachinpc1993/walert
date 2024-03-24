@@ -10,7 +10,7 @@ Demo Video Link (Retrieval Augmented Generation based version): https://bit.ly/W
 
 We built Walert, a conversational agent that answers FAQs about programs of study that are offered in the School of Computing Technologies at RMIT University. This intent-based approach, deployed in Amazon Echo device, was showcased as a demo at RMIT University’s Open Day in August 2023.
 
-You can view our poster presented at CHIIR24:  [Link to PDF](https://github.com/sachinpc1993/walert/blob/main/Poster.pdf) ![Poster](Poster.pdf)
+You can view our poster presented at CHIIR24:  [Walert Poster](https://github.com/sachinpc1993/walert/blob/main/Poster.pdf) 
 
 ![Overall Architecture](OVERALL_ARCHITECTURE.PNG)
 
