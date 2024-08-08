@@ -1,6 +1,8 @@
 # Walert - A Conversational Agent (2024)
 
+Walert updated for FAQ of 2024.
 
+NLU Performance: 73% (Evaluation log made available)
 
 
 
